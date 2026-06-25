@@ -1,4 +1,5 @@
 import PG from 'pg';
+import 'dotenv/config';
 
 const { Pool } = PG;
 
@@ -10,12 +11,14 @@ export const pool = new Pool({
   host: process.env.POSTGRES_HOST,
 });
 
+console.log(process.env.POSTGRES_PASSWORD);
+
 export const PostgresHelper = {
   query: async (query, params) => {
     const client = await pool.connect();
     const result = await client.query(query, params);
 
-    await client.release;
+    await client.release();
 
     return result.rows;
   },
