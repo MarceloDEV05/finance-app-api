@@ -24,7 +24,7 @@ export class CreateUserController {
             return badRequest({message:"Invalid email. Please provide a valid one"})
         }
 
-        // chamar o usecase
+        // chamar || enviar para o usecase
         const createUserUseCase = new CreateUserUseCase();
         const createdUser = await createUserUseCase.execute(params)
 

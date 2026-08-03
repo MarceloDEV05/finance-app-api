@@ -14,3 +14,6 @@
         "semi": "error"
     }
 }
+
+
+docker run -d --name postgresql-container -e POSTGRES_PASSWORD=password -e POSTGRES_USER=root -e POSTGRES_DB=financeapp -v ~/postgresql/finance-app:/var/lib/postgresql/data -p 5432:5432 postgres   
