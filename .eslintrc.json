@@ -1,19 +1,18 @@
 {
-    "env": {
-        "browser": false,
-        "es2021": true,
-        "node": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
-        "no-unused-vars": "error",
-        "semi": "error"
-    }
+  "env": {
+    "browser": false,
+    "es2021": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": "error",
+    "semi": "error"
+  }
 }
 
-
-docker run -d --name postgresql-container -e POSTGRES_PASSWORD=password -e POSTGRES_USER=root -e POSTGRES_DB=financeapp -v ~/postgresql/finance-app:/var/lib/postgresql/data -p 5432:5432 postgres   
+//docker run -d --name postgresql-container -e POSTGRES_PASSWORD=password -e POSTGRES_USER=root -e POSTGRES_DB=financeapp -v ~/postgresql/finance-app:/var/lib/postgresql/data -p 5432:5432 postgres

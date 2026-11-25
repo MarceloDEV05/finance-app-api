@@ -1,4 +1,3 @@
-
 import 'dotenv/config';
 
 import { pool } from '../helper.js';
@@ -16,7 +15,7 @@ const execMigrations = async () => {
     const script = fs.readFileSync(filePath, 'utf-8');
 
     await client.query(script);
-    console.log(script)
+    console.log(script);
 
     console.log('Migrations executada com sucesso!');
   } catch (error) {

@@ -1,33 +1,35 @@
-import { PostgresGetUserByEmailRepository} from '../repositories/postgres/getUserByEmail.js';
+import { PostgresGetUserByEmailRepository } from '../repositories/postgres/getUserByEmail.js';
+import { PostgresUpdateUserRepository } from '../repositories/postgres/updateUser.js';
 import { EmailAlreadyInUseError } from '../errors/user.js';
 import bcrypt from 'bcrypt';
 
-export class UpdateUserUseCase{
-    async execute(userId, UpdateUserParams){
-        if( UpdateUserParams.email){
-            const postgresGetUserByEmailRepository = new PostgresGetUserByEmailRepository();
+export class UpdateUserUseCase {
+  async execute(userId, updateUserParams) {
+    if (updateUserParams.email) {
+      const postgresGetUserByEmailRepository =
+        new PostgresGetUserByEmailRepository();
 
-            const userWithProviderEmail = await postgresGetUserByEmailRepository.execute(
-                UpdateUserParams.email, 
-            )
+      const userWithProvidedEmail =
+        await postgresGetUserByEmailRepository.execute(updateUserParams.email);
 
-            if(userWithProviderEmail){
-                throw new EmailAlreadyInUseError(UpdateUserParams.email)
-            }
-        }
-
-        const user = {
-            ...UpdateUserParams,
-        }
-
-        if(UpdateUserParams.password){
-            const hashedPassord = await bcrypt.hash(UpdateUserParams.password, 10)
-
-            user.password = hashedPassord;
-        }
-        const postgresUpdateUserRepository = new PostgresUpdateUserRepository();
-        const updateUser = await PostgresUpdateUserRepository.execute(userId, user);
-
-        return updateUser;
+      if (userWithProvidedEmail) {
+        throw new EmailAlreadyInUseError(updateUserParams.email);
+      }
     }
+
+    const user = {
+      ...updateUserParams,
+    };
+
+    if (updateUserParams.password) {
+      const hashedPassword = await bcrypt.hash(updateUserParams.password, 10);
+
+      user.password = hashedPassword;
+    }
+
+    const postgresUpdateUserRepository = new PostgresUpdateUserRepository();
+    const updatedUser = await postgresUpdateUserRepository.execute(userId, user);
+
+    return updatedUser;
+  }
 }
