@@ -1,7 +1,7 @@
 import express from 'express';
 import 'dotenv/config.js';
-import { CreateUserController } from './controllers/create-user.js';
-import { GetUserByIdController } from './controllers/getUserById.js';
+import { CreateUserController } from './src/controllers/create-user.js';
+import { GetUserByIdController } from './src/controllers/getUserById.js';
 
 const app = express();
 const port = 3000;

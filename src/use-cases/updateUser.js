@@ -1,6 +1,6 @@
-import { PostgresGetUserByEmailRepository } from '../repositories/postgres/getUserByEmail.js';
-import { PostgresUpdateUserRepository } from '../repositories/postgres/updateUser.js';
-import { EmailAlreadyInUseError } from '../errors/user.js';
+import { PostgresGetUserByEmailRepository } from '../../repositories/postgres/getUserByEmail.js';
+import { PostgresUpdateUserRepository } from '../../repositories/postgres/updateUser.js';
+import { EmailAlreadyInUseError } from '../../errors/user.js';
 import bcrypt from 'bcrypt';
 
 export class UpdateUserUseCase {
@@ -28,7 +28,10 @@ export class UpdateUserUseCase {
     }
 
     const postgresUpdateUserRepository = new PostgresUpdateUserRepository();
-    const updatedUser = await postgresUpdateUserRepository.execute(userId, user);
+    const updatedUser = await postgresUpdateUserRepository.execute(
+      userId,
+      user,
+    );
 
     return updatedUser;
   }

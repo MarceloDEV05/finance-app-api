@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npx husky install",
-    "app:dev": "node --watch src/index.js"
+    "app:dev": "node --watch index.js"
   },
   "keywords": [],
   "author": "",
