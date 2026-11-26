@@ -1,11 +1,11 @@
-import { badRequest } from '../controllers/helpers/http.js';
 import { UpdateUserUseCase } from '../use-cases/updateUser.js';
 import {
     checkIfEmailIsValid,
     checkIfPasswordIsValid,
   emailAlreadyInUseResponse,
   invalidPasswordResponse,
-} from './helpers/user.js';
+  badRequest,
+} from './helpers/index.js';
 
 
 export class UpdateUserController {
