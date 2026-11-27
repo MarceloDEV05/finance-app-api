@@ -1,4 +1,4 @@
-import { UpdateUserUseCase } from '../use-cases/updateUser.js';
+
 import {
     checkIfEmailIsValid,
     checkIfPasswordIsValid,
@@ -9,6 +9,9 @@ import {
 
 
 export class UpdateUserController {
+  constructor(updateUserUseCase){
+    this.UpdateUserUseCase = updateUserUseCase;
+  }
   async execute(httpRequest) {
     const userId = httpRequest.params.userId;
     const params = httpRequest.body;
@@ -35,8 +38,7 @@ export class UpdateUserController {
       });
     }
 
-    const updateUser = new UpdateUserUseCase();
-    const updatedUser = updateUser.execute(userId, params);
+    const updatedUser = await this.updateUser.execute(userId, params);
 
     return updatedUser;
   }
